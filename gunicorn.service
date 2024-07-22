@@ -12,7 +12,7 @@ ExecStart=/var/lib/jenkins/workspace/django-talatparwez/env/bin/gunicorn \
         --workers 3 \
         --bind unix:myproject.sock -m 007 \
         --capture-output --log-level debug \
-        talatparwez.wsgi:app
+        talatparwez.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
