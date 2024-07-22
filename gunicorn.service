@@ -1,0 +1,18 @@
+[Unit]
+Description=Gunicorn instance to serve myproject
+After=network.target
+
+[Service]
+User=root
+Group=www-data
+WorkingDirectory=/var/lib/jenkins/workspace/django-talatparwez/talatparwez
+Environment="PATH=/var/lib/jenkins/workspace/django-talatparwez/env/bin"
+ExecStart=/var/lib/jenkins/workspace/django-talatparwez/env/bin/gunicorn \
+        --error-logfile /var/lib/jenkins/workspace/django-talatparwez/error.log \
+        --workers 3 \
+        --bind unix:myproject.sock -m 007 \
+        --capture-output --log-level debug \
+        talatparwez.wsgi:app
+
+[Install]
+WantedBy=multi-user.target
